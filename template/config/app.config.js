@@ -23,6 +23,20 @@ const config = {
   // update file template dir
   uploadDir: path.join(dataDir, 'downloads'),
 
+  mail: {
+    enable: true,
+    appname: 'cnpmjs.test',
+    from: 'cnpmjs.org mail sender <adderss@gmail.com>',
+    service: 'qq',
+    port: 465,
+    secureConnection: true, // 使用 SSL
+    auth: {
+      user: '773155801@qq.com',
+      //这里密码不是qq密码，是你设置的smtp密码
+      pass: 'htgmlubksnodbcid'
+    }
+  },
+
 }
 
 mkdirp.sync(config.logdir);

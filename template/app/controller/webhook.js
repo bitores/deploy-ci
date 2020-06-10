@@ -1,17 +1,37 @@
 import {
   Controller,
-  Get,
-  Delete,
+  Post,
   Middleware
 } from 'bitorjs-decorators';
-
+const execFileSync = require('child_process').execFileSync;
+const execFile = require('child_process').execFile; 
 
 @Controller('/webhook')
 export default class {
 
-  @Get('/')
-  async index(ctx,...params){
-    console.log(params)
-    ctx.body = "====sdfsd";
+  @Post('/')
+  @Middleware('PushEvent')
+  async push(ctx, next){
+    // console.log(ctx.request.body)
+    // ctx.body = "====sdfsd";
+    ctx.body = 'success';
+    ctx.status = 200;
+    this.build(ctx, ctx.request.body)
+    
+  }
+
+
+
+  async build(ctx, ...args){
+    console.log('args', ctx.message)
+    // return new Promise((res, rej)=>{
+    //   execFile(`../shell/build.sh`, args, {}, (err, stdout, stderr)=>{
+
+    //   })
+    // })
+  }
+
+  async bakAssets(){
+
   }
 }
