@@ -16,7 +16,9 @@ export default class {
     // ctx.body = "====sdfsd";
     ctx.body = 'success';
     ctx.status = 200;
-    this.build(ctx, ctx.request.body)
+    this.build(ctx, ctx.request.body).then(res=>{
+      this.bakAssets();
+    })
     
   }
 
