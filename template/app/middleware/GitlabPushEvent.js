@@ -10,7 +10,7 @@ export default async (ctx, next) => {
   // } else {
   //   // tag_push
   //   // push
-    ctx.message = 'from push middleware'
+    ctx.message = 'from gitlab'
   // }
  await next();
 } 

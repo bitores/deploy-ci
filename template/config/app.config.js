@@ -36,7 +36,15 @@ const config = {
       pass: 'htgmlubksnodbcid'
     }
   },
-
+  sshServer: {
+    host: "example.com",
+    port: 22,
+    username: "admin",
+    password: "root",
+    privateKey: "private key",
+    passphrase: 'private_key_password',
+    path: "path"
+  }
 }
 
 mkdirp.sync(config.logdir);

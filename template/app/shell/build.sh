@@ -1,7 +1,8 @@
 #!/bin/sh
 
+#   存放路径：clonePath/projectName
 #   $1 = clonePath  ../xx/FE
-#   $2 = project    test
+#   $2 = projectName    test
 #   $3 = gitUrl     ssh://...
 #   $4 = tagOrBranch
 #   $5 = movePath

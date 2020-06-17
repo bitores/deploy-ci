@@ -24,7 +24,7 @@ const logger = module.exports = Logger({
   seperator: os.EOL,
 });
 
-
+console.log(config.logdir)
 logger.syncInfo = function () {
   const args = [].slice.call(arguments);
   if (typeof args[0] === 'string') {
