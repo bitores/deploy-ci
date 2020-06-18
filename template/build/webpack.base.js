@@ -1,5 +1,6 @@
 var path = require('path');
 const fs = require('fs');
+const CopyPlugin = require('copy-webpack-plugin');
 const pkg = require('../package.json');
 const cwd = process.cwd();
 
@@ -65,5 +66,12 @@ module.exports = {
   },
   watchOptions: {
     ignored: [path.resolve(cwd, './dist/**/*.*'), 'node_modules']
-  }
+  },
+  plugins:[
+    new CopyPlugin({
+      patterns: [
+        { from: 'app/shell', to: 'shell' },
+      ],
+    }),
+  ]
 };

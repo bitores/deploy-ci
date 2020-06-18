@@ -13,48 +13,29 @@ export default class {
   @Post('/')
   @Middleware('GitlabPushEvent')
   async push(ctx, next){
-    console.log('....');
+    ctx.body = 'success';
+    ctx.status = 200;
     try {
       // 构建
-      const res = this.build(ctx, ctx.request.body);
+      await this.build(ctx, ctx.buildArgs);
       // 备份
-      this.resourceBackup();
+      await this.resourceBackup();
       // 发布
-      this.publishing();
+      await this.publishing();
       // 数据库记录信息
-      this.writedbData();
+      await this.writedbData();
     }catch(err) {
       logger.syncInfo("");
       throw err;
     }
 
-    ctx.body = 'success';
-    ctx.status = 200;
+    
   }
   // 构建
-  async build(ctx, ...args){
+  async build(ctx, args){
     logger.syncInfo("开始构建")
     return new Promise((resolve, reject)=>{
-      exec(`
-mkdir -p $1;
-cd $1;
-
-if [ ! -d $2 ]; then
-    git clone $3;
-fi
-
-cd $2;
-git checkout $4;
-git pull origin $4;
-
-npm install;
-npm run build;
-
-mkdir -p $5;
-
-cp -r dist/* $5;
-      `, args, (err, stdout, stderr)=>{
-        // execFile(`../shell/build.sh`, args, {}, (err, stdout, stderr)=>{
+      execFile(`${__dirname}/shell/build.sh`, args, {}, (err, stdout, stderr)=>{
         if(err) {
           logger.syncInfo("构建失败")
           reject(err)
