@@ -43,16 +43,33 @@
 //   ]
 // }
 export default async (ctx, next) => {
-  // // console.log('from middleware push event', ctx.request.body)
-  // const {event_name,ref, user_username, project, repository} = ctx.request.body;
+  console.log('from middleware push event', ctx.request.body)
+  const {repository, actor, changes} = ctx.request.body;
   // console.log(event_name,ref, user_username, project, repository)
-  // if("tag_push" === event_name) {
-  //   ctx.body = 'not support tag push'
-  //   ctx.status = 404;
-  // } else {
+  
+  const repo = `${__dirname}/repo`,
+  const eventType = change[0].ref.type;
+  const group = repository.project.key;
+  const projectName = repository.name;
+  const branch =  change[0].ref.displayId;
+  const gitUrl = `ssh://git@bitbucket.zmjx.club:7999/${group}/${projectName}.git`;
+  const mvUrl = `${__dirname}/env/${branch}/${projectName}`;
+
+  if("TAG" === eventType) {
+    ctx.body = 'not support tag push'
+    ctx.status = 404;
+  } else if("BRANCH"=== eventType){
   //   // tag_push
   //   // push
-    ctx.message = 'from bitbucket'
-  // }
+
+    ctx.buildArgs = [
+      repo, // clonePath
+      projectName, // projectName
+      gitUrl,// git path
+      branch, //branch event
+      mvUrl // move to path
+    ]
+  }
+
  await next();
 } 
