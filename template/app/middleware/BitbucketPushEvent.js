@@ -47,11 +47,11 @@ export default async (ctx, next) => {
   const {repository, actor, changes} = ctx.request.body;
   // console.log(event_name,ref, user_username, project, repository)
   
-  const repo = `${__dirname}/repo`,
-  const eventType = change[0].ref.type;
+  const repo = `${__dirname}/repo`;
+  const eventType = changes[0].ref.type;
   const group = repository.project.key;
   const projectName = repository.name;
-  const branch =  change[0].ref.displayId;
+  const branch =  changes[0].ref.displayId;
   const gitUrl = `ssh://git@bitbucket.zmjx.club:7999/${group}/${projectName}.git`;
   const mvUrl = `${__dirname}/env/${branch}/${projectName}`;
 

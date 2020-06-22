@@ -6,7 +6,7 @@ import koaCors from 'koa2-cors';
 import views from 'koa-views';
 import path from 'path';
 
-import decodepath from '../middleware/decode';
+import decodepath from 'app/middleware/decode';
 
 const cwd = process.cwd();
 

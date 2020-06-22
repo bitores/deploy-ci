@@ -49,7 +49,12 @@ module.exports = {
   resolve: {
     extensions: [
       '.js', '.json', '.mjs',
-    ]
+    ],
+    alias:{
+      'lib': path.resolve(__dirname, "../lib"),
+      'config': path.resolve(__dirname, "../config"),
+      'app': path.resolve(__dirname, "../app"),
+    }
   },
   module: {
     rules: [{
@@ -70,7 +75,7 @@ module.exports = {
   plugins:[
     new CopyPlugin({
       patterns: [
-        { from: 'app/shell', to: 'shell' },
+        { from: './shell', to: 'shell' },
       ],
     }),
   ]

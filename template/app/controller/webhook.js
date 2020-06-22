@@ -6,7 +6,7 @@ import {
 const execFileSync = require('child_process').execFileSync;
 const execFile = require('child_process').execFile; 
 const exec = require('child_process').exec; 
-const logger = require("../lib/logger");
+const logger = require("lib/logger");
 @Controller('/webhook')
 export default class {
 

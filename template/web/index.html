@@ -4,8 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 生产环境版本，优化了尺寸和速度 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script> -->
+
+
+  <!-- 引入样式文件 -->
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vant@2.8/lib/index.css"
+  />
+  <!-- 引入 Vant 的 JS 文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/vant@2.8/lib/vant.min.js"></script>
+
 </head>
 <body>
-  sdfsd
+  <div id="app">
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
+    <van-button @click="toast('提示')">按钮</van-button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        todos: [
+          { text: '学习 JavaScript' },
+          { text: '学习 Vue' },
+          { text: '整个牛项目' }
+        ]
+      },
+      methods: {
+        toast(msg){
+          vant.Toast(msg);
+        }
+      }
+    })
+  </script>
 </body>
 </html>
